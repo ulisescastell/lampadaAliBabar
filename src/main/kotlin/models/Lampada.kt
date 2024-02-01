@@ -1,20 +1,41 @@
 package models
-import kotlin.math.min
+import utilities.RESET
+import utilities.YELLOW
 
 class Lampada {
     private var id: String = ""
     private var estaEncesa: Boolean = false
-    private var colorInicial: String = ""
+    private var color: String = ""
     private var rangColors: Array<String> = Array<String>(5) { "" }
     private var minIntensitat: Int = 0
     private var maxIntensitat: Int = 0
+    private var intensitat: Int = 0
 
-    constructor(id: String, colorInicial: String, rangColors: Array<String>, minIntensitat: Int, maxIntensitat: Int) {
+    constructor(id: String, color: String, rangColors: Array<String>, minIntensitat: Int, maxIntensitat: Int, intensitat: Int) {
         this.id = id
-        this.colorInicial = colorInicial
+        this.color = color
         this.rangColors = rangColors
         this.minIntensitat = minIntensitat
         this.maxIntensitat = maxIntensitat
+        this.intensitat = intensitat
+    }
+
+    fun encendre () {
+        if (!estaEncesa) {
+            estaEncesa = true
+        }
+        else {
+            println(YELLOW + "La làmpada ja està encesa" + RESET)
+        }
+    }
+
+    fun apagar () {
+        if (estaEncesa) {
+            estaEncesa = false
+        }
+        else {
+            println(YELLOW + "La làmpada ja està apagada" + RESET)
+        }
     }
 
     fun getId () :String {
@@ -26,7 +47,7 @@ class Lampada {
     }
 
     fun getColorInicial (): String {
-        return this.colorInicial
+        return this.color
     }
 
     fun getRangColors (): Array<String>  {
@@ -41,6 +62,10 @@ class Lampada {
         return this.maxIntensitat
     }
 
+    fun getIntensitat (): Int {
+        return this.intensitat
+    }
+
     fun setId (id: String) {
         this.id = id
     }
@@ -50,9 +75,8 @@ class Lampada {
     }
 
     fun setColorInicial (colorInicial: String) {
-        this.colorInicial = colorInicial
+        this.color = colorInicial
     }
-
 
     fun setRangColors (rangColors: Array<String>) {
         this.rangColors = rangColors
@@ -66,8 +90,12 @@ class Lampada {
         this.maxIntensitat = maxIntensitat
     }
 
+    fun setIntensitat (intensitat: Int) {
+        this.intensitat = intensitat
+    }
+
     override fun toString(): String {
-        return "${this.id}, ${this.estaEncesa}, ${this.colorInicial}, ${this.rangColors.contentToString()}, ${this.minIntensitat}, ${this.maxIntensitat} "
+        return "ID de la làmpada: ${this.id}, Estat de la làmpada: ${this.estaEncesa}, Color de la làmpada: ${this.color}, Intensitat actual: ${this.intensitat}"
     }
 
 
