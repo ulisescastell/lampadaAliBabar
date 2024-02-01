@@ -1,5 +1,7 @@
 package models
+import utilities.BLUE
 import utilities.RESET
+import utilities.WHITE_BACKGROUND
 import utilities.YELLOW
 
 class Lampada {
@@ -21,8 +23,8 @@ class Lampada {
     }
 
     fun encendre () {
-        if (!estaEncesa) {
-            estaEncesa = true
+        if (!this.estaEncesa) {
+            this.estaEncesa = true
         }
         else {
             println(YELLOW + "La làmpada ja està encesa" + RESET)
@@ -30,11 +32,22 @@ class Lampada {
     }
 
     fun apagar () {
-        if (estaEncesa) {
-            estaEncesa = false
+        if (this.estaEncesa) {
+            this.estaEncesa = false
         }
         else {
             println(YELLOW + "La làmpada ja està apagada" + RESET)
+        }
+    }
+
+    fun canviarColor () {fdsaf
+        if (estaEncesa) {
+            val posicio dasf
+            for (element in rangColors) {
+                this.color = element
+            }
+        } else {
+            println(YELLOW + "La làmpada ha d'estar encesa antes de poder canviar el color" + RESET)
         }
     }
 
@@ -95,7 +108,7 @@ class Lampada {
     }
 
     override fun toString(): String {
-        return "ID de la làmpada: ${this.id}, Estat de la làmpada: ${this.estaEncesa}, Color de la làmpada: ${this.color}, Intensitat actual: ${this.intensitat}"
+        return BLUE + "\n-----------Menú-----------\nID de la làmpada: ${this.id}\nEstat de la làmpada: ${this.estaEncesa}\nColor de la làmpada: ${this.color}\nIntensitat actual: ${this.intensitat}" + RESET
     }
 
 
