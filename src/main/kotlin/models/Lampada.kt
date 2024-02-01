@@ -40,16 +40,41 @@ class Lampada {
         }
     }
 
-    fun canviarColor () {fdsaf
-        if (estaEncesa) {
-            val posicio dasf
-            for (element in rangColors) {
-                this.color = element
+    fun canviarColor () {
+        if (this.estaEncesa) {
+            val posicio = this.rangColors.indexOf(this.color) // si element existeix dins array: te retorna sa posició -- si no existeix: te retorna -1
+            this.color = this.rangColors[posicio+1]
+        } else {
+            println(YELLOW + "La làmpada ha d'estar encesa antes de poder canviar el color" + RESET)
+        }
+    }
+
+    fun pujarIntensitat () {
+        if(this.estaEncesa) {
+            if(this.intensitat == this.maxIntensitat) {
+                println(YELLOW +"L'intensitat introduïda ja no es pot augmentar més"+ RESET)
+            }
+            else {
+                this.intensitat++
             }
         } else {
             println(YELLOW + "La làmpada ha d'estar encesa antes de poder canviar el color" + RESET)
         }
     }
+
+    fun baixarIntensitat () {
+        if(this.estaEncesa) {
+            if(this.intensitat == this.minIntensitat) {
+                println(YELLOW +"L'intensitat introduïda ja no es pot disminuir més"+ RESET)
+            }
+            else {
+                this.intensitat--
+            }
+        } else {
+            println(YELLOW + "La làmpada ha d'estar encesa antes de poder canviar el color" + RESET)
+        }
+    }
+
 
     fun getId () :String {
         return this.id
@@ -108,7 +133,7 @@ class Lampada {
     }
 
     override fun toString(): String {
-        return BLUE + "\n-----------Menú-----------\nID de la làmpada: ${this.id}\nEstat de la làmpada: ${this.estaEncesa}\nColor de la làmpada: ${this.color}\nIntensitat actual: ${this.intensitat}" + RESET
+        return BLUE + "\n-----------LÀMPADA-----------\nID de la làmpada: ${this.id}\nEstat de la làmpada: ${this.estaEncesa}\nColor de la làmpada: ${this.color}\nIntensitat actual: ${this.intensitat}" + RESET
     }
 
 

@@ -3,16 +3,54 @@ import models.Lampada
 import utilities.*
 
 fun main () {
-    val l1: Lampada = Lampada("Menjador", "blanc", arrayOf("blanc", "blau", "rosa", "vermell"), 1, 5 , 1)
-    val l2: Lampada = Lampada("Cuina", "Blau", arrayOf("lila, taronja, vermell"), 1,10,5)
-    l1.encendre()
-    println(l1)
-    l1.apagar()
-    println(l1)
+    val l1: Lampada = Lampada("Menjador", "Blanc", arrayOf("Blanc", "Blau", "Rosa", "Vermell", "Taronja"), 1, 5 , 3)
+    val l2: Lampada = Lampada("Cuina", "Rosa", arrayOf("Rosa", "Taronja", "Groc", "Blau", "Fúxia", "Magnenta"), 1,10,8)
+
+    println("$RED\n---------Làmpada 1:-------$RESET")
+
     l1.encendre()
     println(l1)
     l1.canviarColor()
+    l1.canviarColor()
+    l1.canviarColor()
     println(l1)
+    l1.pujarIntensitat()
+    l1.pujarIntensitat()
+    println(l1)
+    //extra
+    l1.baixarIntensitat()
+    l1.baixarIntensitat()
+    l1.baixarIntensitat()
+    l1.baixarIntensitat()
+    l1.baixarIntensitat()
+    l1.baixarIntensitat()
+    l1.baixarIntensitat()
+
+    println("$RED\n---------Làmpada 2:-------$RESET")
+
+    println(l2)
+    l2.encendre()
+    println(l2)
+    l2.canviarColor()
+    l2.canviarColor()
+    l2.canviarColor()
+    println(l2)
+    l2.pujarIntensitat()
+    l2.pujarIntensitat()
+    println(l2)
+    l2.apagar()
+    println(l2)
+    l2.canviarColor()
+    println(l2)
+    l2.encendre()
+    println(l2)
+    l2.canviarColor()
+    l2.pujarIntensitat()
+
+
+
+
+
 }
 
 
