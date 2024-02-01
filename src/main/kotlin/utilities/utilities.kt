@@ -1,3 +1,5 @@
+package utilities
+
 import java.util.*
 
 val scan: Scanner = Scanner(System.`in`)
