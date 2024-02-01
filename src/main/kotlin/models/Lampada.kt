@@ -3,19 +3,12 @@ import utilities.BLUE
 import utilities.RESET
 import utilities.WHITE_BACKGROUND
 import utilities.YELLOW
+import utilities.*
 
 /**
- * Representa una làmpada que pot ser encesa, apagada, canviar el seu color i intensitat.
- * @property id Identificador de la làmpada.
- * @property estaEncesa Indica si la làmpada està encesa o apagada.
- * @property color Color actual de la làmpada.
- * @property rangColors Array de colors disponibles per a la làmpada.
- * @property minIntensitat Intensitat mínima de la làmpada.
- * @property maxIntensitat Intensitat màxima de la làmpada.
- * @property intensitat Intensitat actual de la làmpada.
- * @constructor Crea una nova instància de la làampada amb els paràmetres especificats.
+ * Representa una làmpada amb capacitat per encendre's, apagar-se, canviar de color i ajustar-ne la intensitat.
  * @author ulisescastell
- * @since 01/02/2024
+ * @date 2024-02-01
  */
 
 class Lampada {
@@ -27,6 +20,18 @@ class Lampada {
     private var maxIntensitat: Int = 0
     private var intensitat: Int = 0
 
+    /**
+     * Constructor que inicialitza una làmpada amb propietats específiques.
+     * @param id Identificador únic de la làmpada.
+     * @param color Color inicial de la làmpada.
+     * @param rangColors Conjunt de colors que la làmpada pot adoptar.
+     * @param minIntensitat Intensitat lumínica mínima.
+     * @param maxIntensitat Intensitat lumínica màxima.
+     * @param intensitat Intensitat lumínica inicial.
+     * @author ulisescastell
+     * @date 2024-02-01
+     */
+
     constructor(id: String, color: String, rangColors: Array<String>, minIntensitat: Int, maxIntensitat: Int, intensitat: Int) {
         this.id = id
         this.color = color
@@ -37,161 +42,258 @@ class Lampada {
     }
 
     /**
-     * Encén la làmpada.
-     * @author @ulisescastell
-     * @since 01/02/2024
+     * Encén la làmpada si aquesta està apagada.
+     * @author ulisescastell
+     * @date 2024-02-01
      */
-    fun encendre() {
+
+    fun encendre () {
         if (!this.estaEncesa) {
             this.estaEncesa = true
         }
         else {
-            println(YELLOW + "La làmpada ja està encesa" + RESET)
+            println(RED_BRIGHT + "La làmpada ja està encesa." + RESET)
         }
     }
 
     /**
-     * Apaga la làmpada.
-     * @author @ulisescastell
-     * @since 01/02/2024
+     * Apaga la làmpada si aquesta està encesa.
+     * @author ulisescastell
+     * @date 2024-02-01
      */
-    fun apagar() {
+
+    fun apagar () {
         if (this.estaEncesa) {
             this.estaEncesa = false
         }
         else {
-            println(YELLOW + "ATENCIÓ ---- La làmpada ja està apagada" + RESET)
+            println(RED_BRIGHT + "La làmpada ja està apagada." + RESET)
         }
     }
 
     /**
-     * Canvia el color actual de la làmpada al següent disponible en el rang de colors.
-     * @author @ulisescastell
-     * @since 01/02/2024
+     * Canvia el color de la làmpada al següent disponible en el rang de colors.
+     * Requereix que la làmpada estigui encesa per a realitzar el canvi.
+     * @author ulisescastell
+     * @date 2024-02-01
      */
-    fun canviarColor() {
+
+    fun canviarColor () {
         if (this.estaEncesa) {
-            val posicio = this.rangColors.indexOf(this.color)
-            this.color = if (posicio == this.rangColors.size - 1) this.rangColors[0] else this.rangColors[posicio + 1]
+            val posicio = this.rangColors.indexOf(this.color) // si element existeix dins array: te retorna sa posició -- si no existeix: te retorna -1
+            this.color = this.rangColors[posicio+1]
         } else {
-            println(YELLOW + "ATENCIÓ ---- La làmpada ha d'estar encesa abans de poder canviar el color" + RESET)
+            println(RED_BRIGHT + "La làmpada ha d'estar encesa antes de poder canviar el color." + RESET)
         }
     }
 
     /**
-     * Augmenta la intensitat de la làmpada, sense excedir la intensitat màxima.
-     * @author @ulisescastell
-     * @since 01/02/2024
+     * Augmenta la intensitat de la làmpada fins a un màxim establert.
+     * Requereix que la làmpada estigui encesa.
+     * @author ulisescastell
+     * @date 2024-02-01
      */
-    fun pujarIntensitat() {
+
+    fun pujarIntensitat () {
         if(this.estaEncesa) {
             if(this.intensitat == this.maxIntensitat) {
-                println(YELLOW +"ATENCIÓ ---- L'intensitat introduïda ja no es pot augmentar més"+ RESET)
+                println(RED_BRIGHT +"ATENCIÓ ---- L'intensitat introduïda ja no es pot augmentar més."+ RESET)
             }
             else {
                 this.intensitat++
             }
         } else {
-            println(YELLOW + "ATENCIÓ ---- La làmpada ha d'estar encesa abans de poder augmentar la intensitat" + RESET)
+            println(RED_BRIGHT + "ATENCIÓ ---- La làmpada ha d'estar encesa antes de poder canviar el color." + RESET)
         }
     }
 
     /**
-     * Disminueix la intensitat de la làmpada, sense anar per sota de la intensitat mínima.
+     * Disminueix la intensitat de la làmpada fins a un mínim establert.
+     * Requereix que la làmpada estigui encesa.
      * @author ulisescastell
-     * @since 01/02/2024
+     * @date 2024-02-01
      */
-    fun baixarIntensitat() {
+
+    fun baixarIntensitat () {
         if(this.estaEncesa) {
             if(this.intensitat == this.minIntensitat) {
-                println(YELLOW + "ATENCIÓ ---- L'intensitat introduïda ja no es pot disminuir més" + RESET)
+                println(RED_BRIGHT +"ATENCIÓ ---- L'intensitat introduïda ja no es pot disminuir més."+ RESET)
             }
             else {
                 this.intensitat--
             }
         } else {
-            println(YELLOW + "ATENCIÓ ---- La làmpada ha d'estar encesa abans de poder disminuir la intensitat" + RESET)
+            println(RED_BRIGHT + "ATENCIÓ ---- La làmpada ha d'estar encesa antes de poder canviar el color." + RESET)
         }
     }
 
     /**
-     * Retorna l'identificador de la làmpada.
-     * @return L'ID de la làmpada.
+     * Obté l'identificador de la làmpada.
+     * @return L'identificador de la làmpada.
      * @author ulisescastell
-     * @since 01/02/2024
+     * @date 2024-02-01
      */
-    fun getId(): String {
+
+    fun getId () :String {
         return this.id
     }
 
     /**
-     * Indica si la làmpada està encesa.
+     * Verifica si la làmpada està encesa.
      * @return `true` si la làmpada està encesa, `false` en cas contrari.
      * @author ulisescastell
-     * @since 01/02/2024
+     * @date 2024-02-01
      */
-    fun getEstaEncesa(): Boolean {
+
+    fun getEstaEncesa (): Boolean {
         return this.estaEncesa
     }
 
     /**
-     * Retorna el color inicial de la làmpada.
+     * Obté el color actual de la làmpada.
      * @return El color actual de la làmpada.
      * @author ulisescastell
-     * @since 01/02/2024
+     * @date 2024-02-01
      */
-    fun getColorInicial(): String {
+
+    fun getColorInicial (): String {
         return this.color
     }
 
     /**
-     * Retorna el rang de colors disponibles per a la làmpada.
-     * @return Un array amb els colors disponibles.
+     * Obté l'array de colors disponibles per canviar.
+     * @return Array de colors disponibles.
      * @author ulisescastell
-     * @since 01/02/2024
+     * @date 2024-02-01
      */
-    fun getRangColors(): Array<String> {
+
+    fun getRangColors (): Array<String>  {
         return this.rangColors
     }
 
     /**
-     * Retorna la intensitat mínima que pot tenir la làmpada.
+     * Obté la intensitat mínima que la làmpada pot tenir.
      * @return La intensitat mínima de la làmpada.
      * @author ulisescastell
-     * @since 01/02/2024
+     * @date 2024-02-01
      */
-    fun getMinIntensitat(): Int {
+
+    fun getMinIntensitat (): Int  {
         return this.minIntensitat
     }
 
     /**
-     * Retorna la intensitat màxima que pot tenir la làmpada.
+     * Obté la intensitat màxima que la làmpada pot tenir.
      * @return La intensitat màxima de la làmpada.
      * @author ulisescastell
-     * @since 01/02/2024
+     * @date 2024-02-01
      */
-    fun getMaxIntensitat(): Int {
+
+    fun getMaxIntensitat (): Int  {
         return this.maxIntensitat
     }
 
     /**
-     * Retorna la intensitat actual de la làmpada.
+     * Obté la intensitat actual de la làmpada.
      * @return La intensitat actual de la làmpada.
      * @author ulisescastell
-     * @since 01/02/2024
+     * @date 2024-02-01
      */
-    fun getIntensitat(): Int {
+
+    fun getIntensitat (): Int {
         return this.intensitat
     }
 
     /**
-     * Representació en cadena de la làmpada que inclou el seu ID, estat, color i intensitat.
-     * @return Una cadena que representa la làmpada.
+     * Estableix el ID de la làmpada.
+     * @param id El nou ID per a la làmpada.
      * @author ulisescastell
-     * @since 01/02/2024
+     * @date 2024-02-01
      */
-    override fun toString(): String {
-        return BLUE + "\n-----------LÀMPADA-----------\nID de la làmpada: ${this.id}\nEstat de la làmpada: ${this.estaEncesa}\nColor de la làmpada: ${this.color}\nIntensitat actual: ${this.intensitat}" + RESET
-    }
-}
 
+    fun setId (id: String) {
+        this.id = id
+    }
+
+    /**
+     * Estableix l'estat d'encesa o apagada de la làmpada.
+     * @param estaEncesa `true` per encendre la làmpada, `false` per apagar-la.
+     * @author ulisescastell
+     * @date 2024-02-01
+     */
+
+    fun setEstaEncesa (estaEncesa: Boolean) {
+        this.estaEncesa = estaEncesa
+    }
+
+    /**
+     * Estableix el color inicial de la làmpada.
+     * @param colorInicial El nou color per a la làmpada.
+     * @author ulisescastell
+     * @date 2024-02-01
+     */
+
+    fun setColorInicial (colorInicial: String) {
+        this.color = colorInicial
+    }
+
+    /**
+     * Estableix el rang de colors disponibles per a la làmpada.
+     * @param rangColors El nou conjunt de colors disponibles.
+     * @author ulisescastell
+     * @date 2024-02-01
+     */
+
+    fun setRangColors (rangColors: Array<String>) {
+        this.rangColors = rangColors
+    }
+
+    /**
+     * Estableix la intensitat mínima de la làmpada.
+     * @param minIntensitat La nova intensitat mínima.
+     * @author ulisescastell
+     * @date 2024-02-01
+     */
+
+    fun setMinIntensitat (minIntensitat: Int) {
+        this.minIntensitat = minIntensitat
+    }
+
+    /**
+     * Estableix la intensitat màxima de la làmpada.
+     * @param maxIntensitat La nova intensitat màxima.
+     * @author ulisescastell
+     * @date 2024-02-01
+     */
+
+    fun setMaxIntensitat (maxIntensitat: Int) {
+        this.maxIntensitat = maxIntensitat
+    }
+
+    /**
+     * Estableix la intensitat actual de la làmpada.
+     * @param intensitat La nova intensitat actual.
+     * @author ulisescastell
+     * @date 2024-02-01
+     */
+
+    fun setIntensitat (intensitat: Int) {
+        this.intensitat = intensitat
+    }
+
+    /**
+     * Retorna una representació en cadena de text de l'estat actual de la làmpada.
+     * @return Cadena de text que descriu l'estat de la làmpada, incloent ID, estat, color i intensitat.
+     * @author ulisescastell
+     * @date 2024-02-01
+     */
+
+    override fun toString(): String {
+        return "$WHITE-----------LÀMPADA-----------\n" +
+                "ID de la làmpada: $BLUE${this.id}$RESET\n" +
+                "Estat de la làmpada: ${if (this.estaEncesa) "$GREEN${this.estaEncesa}" else "$RED${this.estaEncesa}"}$RESET\n" +
+                "Color de la làmpada: $YELLOW${this.color}$RESET\n" +
+                "Intensitat actual: $PURPLE${this.intensitat}$RESET"
+    }
+
+}

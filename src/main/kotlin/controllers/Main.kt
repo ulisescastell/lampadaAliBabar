@@ -18,6 +18,7 @@ fun main () {
     l1.canviarColor()
     println(l1)
     l1.pujarIntensitat()
+    println(l1)
     l1.pujarIntensitat()
     println(l1)
     l1.pujarIntensitat()
@@ -58,11 +59,6 @@ fun main () {
     l2.canviarColor()
     println(l2)
     l2.pujarIntensitat()
-
-
-
-
-
 }
 
 
