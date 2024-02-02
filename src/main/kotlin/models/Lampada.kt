@@ -288,12 +288,39 @@ class Lampada {
      * @date 2024-02-01
      */
 
+    ////
+    //això ho he hagut de cercar amb el CHAT :) otherwise no em sortía bé jejejej
+    ////
+
+    val lampColor: String
+        get() = when (color) {
+            "Blanc" -> "$WHITE$color$RESET"
+            "Groc" -> "$YELLOW$color$RESET"
+            "Blau" -> "$BLUE$color$RESET"
+            "Rosa" -> "$PURPLE$color$RESET"
+            "Vermell" -> "$RED$color$RESET"
+            "Verd" -> "$GREEN$color$RESET"
+            "Cyan" -> "$CYAN$color$RESET"
+            else -> color // Sin color
+        }
+
+    val estat: String
+        get() = if (estaEncesa) "$GREEN$estaEncesa$RESET" else "$RED$estaEncesa$RESET"
+
+    /**
+     * Retorna una representació en cadena de text de l'estat actual de la làmpada.
+     * @return Cadena de text que descriu l'estat de la làmpada, incloent ID, estat, color i intensitat.
+     * @author ulisescastell
+     * @date 2024-02-01
+     */
+
+    
     override fun toString(): String {
         return "$WHITE-----------LÀMPADA-----------\n" +
-                "ID de la làmpada: $BLUE${this.id}$RESET\n" +
-                "Estat de la làmpada: ${if (this.estaEncesa) "$GREEN${this.estaEncesa}" else "$RED${this.estaEncesa}"}$RESET\n" +
-                "Color de la làmpada: $YELLOW${this.color}$RESET\n" +
-                "Intensitat actual: $PURPLE${this.intensitat}$RESET"
+                "ID de la làmpada: $BLUE$id$RESET\n" +
+                "Estat de la làmpada: $estat\n" +
+                "Color de la làmpada: $lampColor\n" +
+                "Intensitat actual: $PURPLE$intensitat$RESET"
     }
 
 }
